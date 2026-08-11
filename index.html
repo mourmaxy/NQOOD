@@ -1,0 +1,1011 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>NQOOD</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f8f8f8;
+    color: #111;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    height: 64px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 18px;
+
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.new-btn {
+    background: #111;
+    color: #fff;
+    border: none;
+
+    padding: 10px 15px;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+    width: 100%;
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    padding: 38px 16px 50px;
+}
+
+.intro {
+    margin-bottom: 30px;
+}
+
+.intro h1 {
+    font-size: 35px;
+    line-height: 1.05;
+
+    letter-spacing: -1.8px;
+
+    margin-bottom: 9px;
+}
+
+.intro p {
+    color: #888;
+    font-size: 15px;
+}
+
+
+/* =========================
+   GOALS
+========================= */
+
+#goals {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.goal {
+    background: #fff;
+
+    border: 1px solid #e9e9e9;
+
+    border-radius: 18px;
+
+    padding: 18px;
+}
+
+.goal-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+.goal-name {
+    font-size: 20px;
+    font-weight: 700;
+
+    word-break: break-word;
+
+    margin-bottom: 5px;
+}
+
+.goal-target {
+    color: #888;
+    font-size: 13px;
+}
+
+.delete {
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    background: #f4f4f4;
+
+    border-radius: 9px;
+
+    color: #777;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   MONEY INFO
+========================= */
+
+.money-info {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 14px;
+
+    font-size: 13px;
+
+    color: #777;
+}
+
+.money-info strong {
+    color: #111;
+}
+
+
+/* =========================
+   MONEY GRID
+========================= */
+
+.money-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 8px;
+
+    max-height: 330px;
+
+    overflow-y: auto;
+
+    padding: 2px;
+}
+
+.money {
+    min-height: 50px;
+
+    border: 1px solid #dedede;
+
+    background: #fafafa;
+
+    border-radius: 10px;
+
+    color: #222;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: transform .12s,
+                background .12s;
+}
+
+.money:active {
+    transform: scale(.94);
+}
+
+.money.done {
+    background: #111;
+
+    border-color: #111;
+
+    color: #fff;
+
+    text-decoration: line-through;
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty {
+    background: #fff;
+
+    border: 1px dashed #d8d8d8;
+
+    border-radius: 18px;
+
+    padding: 45px 20px;
+
+    text-align: center;
+}
+
+.empty h2 {
+    font-size: 20px;
+
+    margin-bottom: 8px;
+}
+
+.empty p {
+    color: #888;
+
+    font-size: 14px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.45);
+
+    display: none;
+
+    align-items: flex-end;
+
+    z-index: 100;
+}
+
+.overlay.show {
+    display: flex;
+}
+
+.modal {
+    width: 100%;
+
+    background: #fff;
+
+    border-radius: 22px 22px 0 0;
+
+    padding: 25px 20px 30px;
+
+    animation: slideUp .2s ease;
+}
+
+@keyframes slideUp {
+
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+
+}
+
+.modal h2 {
+    font-size: 24px;
+
+    margin-bottom: 7px;
+}
+
+.modal p {
+    color: #888;
+
+    font-size: 14px;
+
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    margin-bottom: 7px;
+}
+
+input {
+    width: 100%;
+
+    height: 52px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 11px;
+
+    padding: 0 14px;
+
+    font-size: 16px;
+
+    outline: none;
+
+    margin-bottom: 18px;
+}
+
+input:focus {
+    border-color: #111;
+}
+
+.modal-buttons {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 9px;
+
+    margin-top: 5px;
+}
+
+.modal-buttons button {
+    height: 52px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.cancel {
+    background: #eee;
+}
+
+.create {
+    background: #111;
+
+    color: #fff;
+}
+
+
+/* =========================
+   TABLET / DESKTOP
+========================= */
+
+@media (min-width: 650px) {
+
+    header {
+        padding: 0 30px;
+    }
+
+    main {
+        padding-top: 55px;
+    }
+
+    .intro h1 {
+        font-size: 46px;
+    }
+
+    .money-grid {
+        grid-template-columns: repeat(8, 1fr);
+    }
+
+    .overlay {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal {
+        width: min(420px, 92%);
+
+        border-radius: 20px;
+
+        padding: 28px;
+
+        animation: none;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+        NQOOD
+    </div>
+
+    <button
+        class="new-btn"
+        onclick="openModal()"
+    >
+        + New goal
+    </button>
+
+</header>
+
+
+<main>
+
+    <div class="intro">
+
+        <h1>
+            Save for what you want.
+        </h1>
+
+        <p>
+            Small amounts. Big goals.
+        </p>
+
+    </div>
+
+
+    <div id="goals"></div>
+
+</main>
+
+
+<!-- NEW GOAL -->
+
+<div
+    class="overlay"
+    id="overlay"
+>
+
+    <div class="modal">
+
+        <h2>
+            New goal
+        </h2>
+
+        <p>
+            What are you saving for?
+        </p>
+
+
+        <label>
+            Goal name
+        </label>
+
+        <input
+            id="goalName"
+            type="text"
+            placeholder="iPhone"
+            autocomplete="off"
+        >
+
+
+        <label>
+            Amount
+        </label>
+
+        <input
+            id="goalAmount"
+            type="number"
+            placeholder="4000"
+            min="1"
+            inputmode="numeric"
+        >
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="cancel"
+                onclick="closeModal()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="create"
+                onclick="createGoal()"
+            >
+                Create
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   LOAD DATA
+========================= */
+
+let goals =
+    JSON.parse(
+        localStorage.getItem("NQOOD_GOALS")
+    ) || [];
+
+
+/* =========================
+   SAVE DATA
+========================= */
+
+function save() {
+
+    localStorage.setItem(
+        "NQOOD_GOALS",
+        JSON.stringify(goals)
+    );
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+function openModal() {
+
+    document
+        .getElementById("overlay")
+        .classList.add("show");
+
+    setTimeout(() => {
+
+        document
+            .getElementById("goalName")
+            .focus();
+
+    }, 150);
+
+}
+
+
+function closeModal() {
+
+    document
+        .getElementById("overlay")
+        .classList.remove("show");
+
+    document
+        .getElementById("goalName")
+        .value = "";
+
+    document
+        .getElementById("goalAmount")
+        .value = "";
+
+}
+
+
+/* Close modal by clicking outside */
+
+document
+    .getElementById("overlay")
+    .addEventListener(
+        "click",
+        function(e) {
+
+            if (e.target === this) {
+
+                closeModal();
+
+            }
+
+        }
+    );
+
+
+/* =========================
+   CREATE GOAL
+========================= */
+
+function createGoal() {
+
+    const name =
+        document
+            .getElementById("goalName")
+            .value
+            .trim();
+
+
+    const amount =
+        Number(
+            document
+                .getElementById("goalAmount")
+                .value
+        );
+
+
+    if (!name) {
+
+        alert("Enter a goal name.");
+
+        return;
+
+    }
+
+
+    if (!amount || amount <= 0) {
+
+        alert("Enter a valid amount.");
+
+        return;
+
+    }
+
+
+    const boxes = [];
+
+
+    /*
+       Every box is 20 DH.
+    */
+
+    const fullBoxes =
+        Math.floor(amount / 20);
+
+
+    const remainder =
+        amount % 20;
+
+
+    for (
+        let i = 0;
+        i < fullBoxes;
+        i++
+    ) {
+
+        boxes.push({
+
+            value: 20,
+
+            done: false
+
+        });
+
+    }
+
+
+    /*
+       If the amount is not
+       divisible by 20.
+    */
+
+    if (remainder > 0) {
+
+        boxes.push({
+
+            value: remainder,
+
+            done: false
+
+        });
+
+    }
+
+
+    goals.push({
+
+        id: Date.now(),
+
+        name: name,
+
+        amount: amount,
+
+        boxes: boxes
+
+    });
+
+
+    save();
+
+    closeModal();
+
+    render();
+
+}
+
+
+/* =========================
+   TOGGLE BOX
+========================= */
+
+function toggleMoney(
+    goalId,
+    boxIndex
+) {
+
+    const goal =
+        goals.find(
+            g => g.id === goalId
+        );
+
+
+    if (!goal) return;
+
+
+    goal.boxes[boxIndex].done =
+        !goal.boxes[boxIndex].done;
+
+
+    save();
+
+    render();
+
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+function deleteGoal(id) {
+
+    if (
+        !confirm(
+            "Delete this goal?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    goals =
+        goals.filter(
+            goal => goal.id !== id
+        );
+
+
+    save();
+
+    render();
+
+}
+
+
+/* =========================
+   CALCULATE SAVED
+========================= */
+
+function getSaved(goal) {
+
+    return goal.boxes
+
+        .filter(
+            box => box.done
+        )
+
+        .reduce(
+            (total, box) =>
+                total + box.value,
+            0
+        );
+
+}
+
+
+/* =========================
+   FORMAT MONEY
+========================= */
+
+function money(value) {
+
+    return value.toLocaleString(
+        "en-US"
+    ) + " DH";
+
+}
+
+
+/* =========================
+   RENDER
+========================= */
+
+function render() {
+
+    const container =
+        document.getElementById(
+            "goals"
+        );
+
+
+    if (goals.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <h2>
+                    No goals yet.
+                </h2>
+
+                <p>
+                    Start saving for something you want.
+                </p>
+
+                <button
+                    class="new-btn"
+                    onclick="openModal()"
+                >
+                    + New goal
+                </button>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    goals.forEach(goal => {
+
+        const saved =
+            getSaved(goal);
+
+
+        const remaining =
+            Math.max(
+                0,
+                goal.amount - saved
+            );
+
+
+        const card =
+            document.createElement(
+                "div"
+            );
+
+
+        card.className = "goal";
+
+
+        card.innerHTML = `
+
+            <div class="goal-top">
+
+                <div>
+
+                    <div class="goal-name">
+                        ${escapeHTML(
+                            goal.name
+                        )}
+                    </div>
+
+                    <div class="goal-target">
+                        Goal: ${money(
+                            goal.amount
+                        )}
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="delete"
+                    onclick="
+                        deleteGoal(
+                            ${goal.id}
+                        )
+                    "
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="money-info">
+
+                <span>
+                    Saved:
+                    <strong>
+                        ${money(saved)}
+                    </strong>
+                </span>
+
+                <span>
+                    Left:
+                    <strong>
+                        ${money(remaining)}
+                    </strong>
+                </span>
+
+            </div>
+
+
+            <div class="money-grid">
+
+                ${goal.boxes
+                    .map(
+                        (box, index) => `
+
+                        <button
+                            class="
+                                money
+                                ${
+                                    box.done
+                                        ? "done"
+                                        : ""
+                                }
+                            "
+                            onclick="
+                                toggleMoney(
+                                    ${goal.id},
+                                    ${index}
+                                )
+                            "
+                        >
+                            ${box.value} DH
+                        </button>
+
+                    `
+                    )
+                    .join("")}
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================
+   BASIC HTML SAFETY
+========================= */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+render();
+
+</script>
+
+</body>
+</html>
+```
